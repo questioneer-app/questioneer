@@ -33,7 +33,7 @@ export default function PaperDetail() {
   if (loading) {
     return (
       <div className="flex-1 flex justify-center py-24">
-        <div className="w-8 h-8 border-4 border-sky-100 border-t-sky-500 rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-4 border-primary-100 border-t-primary-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -42,14 +42,14 @@ export default function PaperDetail() {
     return (
       <div className="flex-1 flex flex-col items-center py-24">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Paper not found</h2>
-        <Link to="/history" className="text-sky-500 hover:underline">Return to History</Link>
+        <Link to="/history" className="text-primary-600 hover:underline">Return to History</Link>
       </div>
     );
   }
 
   return (
     <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Link to="/history" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-sky-500 mb-8 transition-colors">
+      <Link to="/history" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary-700 mb-8 transition-colors">
         <ArrowLeft className="w-4 h-4 mr-1" /> Back to History
       </Link>
       

@@ -39,7 +39,7 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex items-center mb-8">
-        <button onClick={onBack} className="p-2 hover:bg-gray-50 rounded-full transition-colors mr-4">
+        <button onClick={onBack} className="p-2 hover:bg-white rounded-full transition-colors mr-4">
           <ArrowLeft className="w-5 h-5 text-gray-500" />
         </button>
         <div>
@@ -59,8 +59,8 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
                 onClick={() => { setSelectedClass(cls); setSelectedChapters([]); }}
                 className={`py-2 px-3 text-sm rounded-xl border transition-all ${
                   selectedClass === cls 
-                    ? 'border-sky-500 bg-sky-500 text-white' 
-                    : 'border-gray-200 text-gray-700 hover:border-sky-300 bg-white'
+                    ? 'border-primary-600 bg-primary-600 text-white' 
+                    : 'border-gray-200 text-gray-700 hover:border-primary-300 bg-white'
                 }`}
               >
                 {cls}
@@ -80,8 +80,8 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
                   onClick={() => { setSelectedSubject(sub); setSelectedChapters([]); }}
                   className={`py-2 px-4 text-sm rounded-xl border transition-all ${
                     selectedSubject === sub 
-                      ? 'border-sky-500 bg-sky-500 text-white' 
-                      : 'border-gray-200 text-gray-700 hover:border-sky-300 bg-white'
+                      ? 'border-primary-600 bg-primary-600 text-white' 
+                      : 'border-gray-200 text-gray-700 hover:border-primary-300 bg-white'
                   }`}
                 >
                   {sub}
@@ -98,7 +98,7 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
               <label className="block text-sm font-medium text-gray-900">Chapters</label>
               <button 
                 onClick={handleSelectAll}
-                className="text-sm font-medium text-sky-500 hover:text-sky-600"
+                className="text-sm font-medium text-primary-600 hover:text-primary-700"
               >
                 {selectedChapters.length === chapters.length ? 'Deselect All' : 'Select All'}
               </button>
@@ -109,13 +109,13 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
                   key={chapter} 
                   className={`flex items-center p-3 rounded-xl border cursor-pointer transition-all ${
                     selectedChapters.includes(chapter) 
-                      ? 'border-sky-500 bg-sky-50' 
-                      : 'border-gray-200 hover:bg-gray-50'
+                      ? 'border-primary-600 bg-primary-50' 
+                      : 'border-gray-200 hover:bg-white'
                   }`}
                 >
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
+                    className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                     checked={selectedChapters.includes(chapter)}
                     onChange={() => handleChapterToggle(chapter)}
                   />
@@ -132,8 +132,8 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
             disabled={!isFormValid}
             className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
               isFormValid 
-                ? 'bg-sky-500 text-white hover:bg-sky-600' 
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                ? 'bg-primary-600 text-white hover:bg-primary-700' 
+                : 'bg-white text-gray-400 cursor-not-allowed'
             }`}
           >
             Next Step

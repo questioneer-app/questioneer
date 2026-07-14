@@ -103,23 +103,23 @@ export default function Generate() {
           <div className="grid md:grid-cols-2 gap-6">
             <button
               onClick={() => { setMethod("chapters"); setStep(2); }}
-              className="p-8 border-2 border-gray-100 hover:border-sky-500 rounded-3xl transition-all flex flex-col items-center text-center group bg-white shadow-sm hover:shadow-md"
+              className="p-8 border-2 border-gray-100 hover:border-primary-600 rounded-3xl transition-all flex flex-col items-center text-center group bg-white shadow-sm hover:shadow-md"
             >
-              <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-sky-500 transition-colors">
-                <BookOpen className="w-8 h-8 text-sky-500 group-hover:text-white transition-colors" />
+              <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-700 transition-colors">
+                <BookOpen className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 group-hover:text-sky-600 transition-colors">Select Chapters</h3>
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-700 transition-colors">Select Chapters</h3>
               <p className="text-gray-500 text-sm">Choose specific subjects and chapters from NCERT syllabus.</p>
             </button>
 
             <button
               onClick={() => { setMethod("upload"); setStep(2); }}
-              className="p-8 border-2 border-gray-100 hover:border-sky-500 rounded-3xl transition-all flex flex-col items-center text-center group bg-white shadow-sm hover:shadow-md"
+              className="p-8 border-2 border-gray-100 hover:border-primary-600 rounded-3xl transition-all flex flex-col items-center text-center group bg-white shadow-sm hover:shadow-md"
             >
-              <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-sky-500 transition-colors">
-                <FileUp className="w-8 h-8 text-sky-500 group-hover:text-white transition-colors" />
+              <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-700 transition-colors">
+                <FileUp className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 group-hover:text-sky-600 transition-colors">Upload Material</h3>
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-700 transition-colors">Upload Material</h3>
               <p className="text-gray-500 text-sm">Upload PDFs or images of notes to generate targeted questions.</p>
             </button>
           </div>
@@ -143,7 +143,7 @@ export default function Generate() {
 
       {step === 4 && (
         <div className="flex flex-col items-center justify-center py-24 space-y-6">
-          <div className="w-12 h-12 border-4 border-sky-100 border-t-sky-500 rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-primary-100 border-t-primary-600 rounded-full animate-spin"></div>
           <h3 className="text-xl font-medium text-gray-900">Crafting your question paper...</h3>
           <p className="text-gray-500 text-sm text-center max-w-md">Our AI is analyzing the material and structuring the questions based on your requirements.</p>
         </div>

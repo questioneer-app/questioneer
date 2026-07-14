@@ -29,13 +29,13 @@ export default function Navbar() {
     <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <BookOpenText className="w-7 h-7 text-sky-500" />
+          <BookOpenText className="w-7 h-7 text-primary-600" />
           <span className="font-bold text-xl tracking-tight text-gray-900">QUESTIONEER</span>
         </Link>
         <nav className="hidden md:flex space-x-8 items-center">
-          <Link to="/#how-it-works" className="text-sm font-medium text-gray-600 hover:text-sky-500 transition-colors">How it Works</Link>
-          <Link to="/#features" className="text-sm font-medium text-gray-600 hover:text-sky-500 transition-colors">Features</Link>
-          <Link to="/history" className="text-sm font-medium text-gray-600 hover:text-sky-500 transition-colors">History</Link>
+          <Link to="/#how-it-works" className="text-sm font-medium text-gray-600 hover:text-primary-700 transition-colors">How it Works</Link>
+          <Link to="/#features" className="text-sm font-medium text-gray-600 hover:text-primary-700 transition-colors">Features</Link>
+          <Link to="/history" className="text-sm font-medium text-gray-600 hover:text-primary-700 transition-colors">History</Link>
           
           <div className="h-6 w-px bg-gray-200 mx-2"></div>
 
@@ -47,7 +47,7 @@ export default function Navbar() {
               </span>
               <button 
                 onClick={handleSignOut}
-                className="text-sm font-medium text-gray-600 hover:text-sky-500 transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-primary-700 transition-colors"
               >
                 Sign out
               </button>
@@ -55,7 +55,7 @@ export default function Navbar() {
           ) : (
             <button 
               onClick={handleSignIn}
-              className="text-sm font-medium text-gray-600 hover:text-sky-500 transition-colors flex items-center"
+              className="text-sm font-medium text-gray-600 hover:text-primary-700 transition-colors flex items-center"
             >
               <LogIn className="w-4 h-4 mr-2" />
               Sign In
@@ -64,7 +64,7 @@ export default function Navbar() {
 
           <Link 
             to="/generate" 
-            className="text-sm font-medium bg-sky-500 text-white px-5 py-2 rounded-full hover:bg-sky-600 transition-colors ml-4"
+            className="text-sm font-medium bg-primary-600 text-white px-5 py-2 rounded-full hover:bg-primary-700 transition-colors ml-4"
           >
             Get Started
           </Link>

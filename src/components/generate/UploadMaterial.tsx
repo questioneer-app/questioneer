@@ -41,7 +41,7 @@ export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any)
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex items-center mb-8">
-        <button onClick={onBack} className="p-2 hover:bg-gray-50 rounded-full transition-colors mr-4">
+        <button onClick={onBack} className="p-2 hover:bg-white rounded-full transition-colors mr-4">
           <ArrowLeft className="w-5 h-5 text-gray-500" />
         </button>
         <div>
@@ -57,7 +57,7 @@ export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any)
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             className={`border-2 border-dashed rounded-3xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer ${
-              isDragging ? 'border-sky-500 bg-sky-50' : 'border-gray-300 hover:border-sky-300 hover:bg-sky-50/50'
+              isDragging ? 'border-primary-600 bg-primary-50' : 'border-gray-300 hover:border-primary-300 hover:bg-white'
             }`}
             onClick={() => fileInputRef.current?.click()}
           >
@@ -68,17 +68,17 @@ export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any)
               accept=".pdf,image/jpeg,image/png,image/webp"
               onChange={handleFileChange}
             />
-            <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mb-4">
-              <UploadCloud className="w-8 h-8 text-sky-500" />
+            <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-4">
+              <UploadCloud className="w-8 h-8 text-primary-600" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-1">Click to upload or drag and drop</h3>
             <p className="text-gray-500 text-sm mb-4">PDF, JPG, PNG, WEBP (Max 10MB)</p>
           </div>
         ) : (
-          <div className="border border-gray-200 rounded-2xl p-6 flex items-center justify-between bg-gray-50">
+          <div className="border border-gray-200 rounded-2xl p-6 flex items-center justify-between bg-white">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-gray-100">
-                <File className="w-6 h-6 text-sky-500" />
+                <File className="w-6 h-6 text-primary-600" />
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-900 truncate max-w-[200px] sm:max-w-xs">{file.name}</p>
@@ -100,8 +100,8 @@ export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any)
             disabled={!file}
             className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
               file 
-                ? 'bg-sky-500 text-white hover:bg-sky-600' 
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                ? 'bg-primary-600 text-white hover:bg-primary-700' 
+                : 'bg-white text-gray-400 cursor-not-allowed'
             }`}
           >
             Next Step

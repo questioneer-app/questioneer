@@ -27,7 +27,7 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex items-center mb-8">
-        <button onClick={onBack} className="p-2 hover:bg-gray-50 rounded-full transition-colors mr-4">
+        <button onClick={onBack} className="p-2 hover:bg-white rounded-full transition-colors mr-4">
           <ArrowLeft className="w-5 h-5 text-gray-500" />
         </button>
         <div>
@@ -47,8 +47,8 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
                 onClick={() => setDifficulty(diff)}
                 className={`py-3 px-4 text-sm font-medium rounded-xl border transition-all ${
                   difficulty === diff 
-                    ? 'border-sky-500 bg-sky-500 text-white' 
-                    : 'border-gray-200 text-gray-700 hover:border-sky-300 bg-white'
+                    ? 'border-primary-600 bg-primary-600 text-white' 
+                    : 'border-gray-200 text-gray-700 hover:border-primary-300 bg-white'
                 }`}
               >
                 {diff}
@@ -67,8 +67,8 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
                 onClick={() => handleTypeToggle(type)}
                 className={`py-2 px-4 text-sm rounded-xl border transition-all ${
                   selectedTypes.includes(type) 
-                    ? 'border-sky-500 bg-sky-50 text-sky-600' 
-                    : 'border-gray-200 text-gray-700 hover:border-sky-300 bg-white'
+                    ? 'border-primary-600 bg-primary-50 text-primary-600' 
+                    : 'border-gray-200 text-gray-700 hover:border-primary-300 bg-white'
                 }`}
               >
                 {type}
@@ -85,7 +85,7 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
               type="number" 
               value={marks} 
               onChange={(e) => setMarks(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-sky-500 outline-none focus:ring-1 focus:ring-sky-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-600 outline-none focus:ring-1 focus:ring-primary-600 transition-colors"
               min={1}
             />
           </div>
@@ -97,7 +97,7 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
               type="number" 
               value={numQuestions} 
               onChange={(e) => setNumQuestions(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-sky-500 outline-none focus:ring-1 focus:ring-sky-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-600 outline-none focus:ring-1 focus:ring-primary-600 transition-colors"
               min={1}
             />
           </div>
@@ -109,8 +109,8 @@ export default function PaperConfig({ onGenerate, onBack }: { onGenerate: (data:
             disabled={!isFormValid}
             className={`flex items-center px-8 py-4 rounded-full font-medium transition-all shadow-sm ${
               isFormValid 
-                ? 'bg-sky-500 text-white hover:bg-sky-600' 
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                ? 'bg-primary-600 text-white hover:bg-primary-700' 
+                : 'bg-white text-gray-400 cursor-not-allowed'
             }`}
           >
             <Sparkles className="mr-2 w-5 h-5" />

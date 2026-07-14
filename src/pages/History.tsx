@@ -43,8 +43,8 @@ export default function History() {
   if (!user) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">
-        <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mb-6">
-          <Clock className="w-8 h-8 text-sky-500" />
+        <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6">
+          <Clock className="w-8 h-8 text-primary-600" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign in to view history</h2>
         <p className="text-gray-500 mb-8 max-w-sm">You need to sign in to save and view your previously generated question papers.</p>
@@ -61,16 +61,16 @@ export default function History() {
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <div className="w-8 h-8 border-4 border-sky-100 border-t-sky-500 rounded-full animate-spin"></div>
+          <div className="w-8 h-8 border-4 border-primary-100 border-t-primary-600 rounded-full animate-spin"></div>
         </div>
       ) : papers.length === 0 ? (
-        <div className="bg-gray-50 rounded-3xl p-12 text-center border border-gray-100">
+        <div className="bg-white rounded-3xl p-12 text-center border border-gray-100">
           <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No papers generated yet</h3>
           <p className="text-gray-500 mb-6">Create your first question paper to see it here.</p>
           <Link 
             to="/generate"
-            className="inline-flex items-center px-6 py-3 bg-sky-500 text-white font-medium rounded-full hover:bg-sky-600 transition-colors shadow-sm"
+            className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-full hover:bg-primary-700 transition-colors shadow-sm"
           >
             Generate Now
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -81,10 +81,10 @@ export default function History() {
           {papers.map((paper: any) => (
             <div key={paper.id} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow group">
               <div className="flex items-start justify-between mb-4">
-                <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center text-sky-500">
+                <div className="w-10 h-10 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600">
                   <FileText className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-md">
+                <span className="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded-md">
                   {new Date(paper.createdAt).toLocaleDateString()}
                 </span>
               </div>
@@ -95,7 +95,7 @@ export default function History() {
                 {paper.marks} Marks • {paper.numQuestions} Questions
               </p>
               <div className="pt-4 border-t border-gray-100">
-                <Link to={`/history/${paper.id}`} className="text-sm font-medium text-gray-900 group-hover:text-sky-500 flex items-center transition-colors">
+                <Link to={`/history/${paper.id}`} className="text-sm font-medium text-gray-900 group-hover:text-primary-700 flex items-center transition-colors">
                   View Paper <ArrowRight className="ml-1 w-4 h-4" />
                 </Link>
               </div>

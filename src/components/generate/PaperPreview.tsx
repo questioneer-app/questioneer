@@ -29,7 +29,7 @@ export default function PaperPreview({ markdown, onReset }: { markdown: string, 
 
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="bg-gray-50 p-6 border-b border-gray-100 flex items-center justify-between">
+      <div className="bg-white p-6 border-b border-gray-100 flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-gray-900">Generated Paper</h2>
           <p className="text-gray-500 text-sm">Review your generated question paper.</p>
@@ -37,14 +37,14 @@ export default function PaperPreview({ markdown, onReset }: { markdown: string, 
         <div className="flex space-x-3">
           <button
             onClick={onReset}
-            className="flex items-center px-4 py-2 text-sm font-medium text-sky-500 bg-white border border-sky-200 rounded-full hover:bg-sky-50 transition-colors"
+            className="flex items-center px-4 py-2 text-sm font-medium text-primary-600 bg-white border border-primary-200 rounded-full hover:bg-primary-50 transition-colors"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Create New
           </button>
           <button
             onClick={handleDownloadPDF}
-            className="flex items-center px-4 py-2 text-sm font-medium text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-sm"
+            className="flex items-center px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-colors shadow-sm"
           >
             <Download className="w-4 h-4 mr-2" />
             Download PDF
