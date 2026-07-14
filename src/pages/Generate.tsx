@@ -32,6 +32,9 @@ export default function Generate() {
         formData.append("file", finalData.file);
         formData.append("options", JSON.stringify({
           schoolName: finalData.schoolName,
+          examinationType: finalData.examinationType,
+          academicSession: finalData.academicSession,
+          timeAllowed: finalData.timeAllowed,
           difficulty: finalData.difficulty,
           questionTypes: finalData.questionTypes,
           marks: finalData.marks,
@@ -47,6 +50,9 @@ export default function Generate() {
         }));
         formData.append("options", JSON.stringify({
           schoolName: finalData.schoolName,
+          examinationType: finalData.examinationType,
+          academicSession: finalData.academicSession,
+          timeAllowed: finalData.timeAllowed,
           difficulty: finalData.difficulty,
           questionTypes: finalData.questionTypes,
           marks: finalData.marks,

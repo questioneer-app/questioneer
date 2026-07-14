@@ -1,6 +1,4 @@
 import { Download, RefreshCw } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useRef, useState } from "react";
 // @ts-ignore
 import html2pdf from "html2pdf.js";
@@ -16,7 +14,7 @@ export default function PaperPreview({ markdown, onReset }: { markdown: string, 
     try {
       const element = contentRef.current;
       const opt = {
-        margin:       15,
+        margin:       20,
         filename:     'Question_Paper.pdf',
         image:        { type: 'jpeg' as const, quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true },
@@ -64,11 +62,10 @@ export default function PaperPreview({ markdown, onReset }: { markdown: string, 
       
       <div className="p-8 md:p-12" ref={contentRef}>
         <div className="prose prose-gray max-w-none">
-          <div className="markdown-body font-sans text-gray-800 leading-relaxed">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {markdown}
-            </ReactMarkdown>
-          </div>
+          <div 
+            className="markdown-body font-sans text-gray-800 leading-relaxed" 
+            dangerouslySetInnerHTML={{ __html: markdown }} 
+          />
         </div>
       </div>
     </div>
