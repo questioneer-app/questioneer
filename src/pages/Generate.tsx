@@ -31,6 +31,7 @@ export default function Generate() {
       if (finalData.method === 'upload' && finalData.file) {
         formData.append("file", finalData.file);
         formData.append("options", JSON.stringify({
+          schoolName: finalData.schoolName,
           difficulty: finalData.difficulty,
           questionTypes: finalData.questionTypes,
           marks: finalData.marks,
@@ -45,6 +46,7 @@ export default function Generate() {
           chapters: finalData.chapters
         }));
         formData.append("options", JSON.stringify({
+          schoolName: finalData.schoolName,
           difficulty: finalData.difficulty,
           questionTypes: finalData.questionTypes,
           marks: finalData.marks,
@@ -62,11 +64,21 @@ export default function Generate() {
         throw new Error(`Generation failed: ${res.status} ${resultText}`);
       }
       
+      if (resultText.trim().startsWith('<')) {
+        throw new Error("The server is still starting up or returned an unexpected page. Please wait a few seconds and try again.");
+      }
+      
       let result;
       try {
         const parsed = JSON.parse(resultText);
+        if (parsed.error) {
+          throw new Error(parsed.error);
+        }
         result = parsed.result;
-      } catch (e) {
+      } catch (e: any) {
+        if (e.message.includes('server is still starting up') || e.message.includes('API Key missing')) {
+          throw e;
+        }
         throw new Error(`Failed to parse response: ${resultText.substring(0, 100)}...`);
       }
       

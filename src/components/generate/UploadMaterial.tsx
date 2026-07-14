@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, UploadCloud, File, X } from "lucide-react";
 
 export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any) => void, onBack: () => void }) {
   const [file, setFile] = useState<File | null>(null);
+  const [schoolName, setSchoolName] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -75,31 +76,44 @@ export default function UploadMaterial({ onNext, onBack }: { onNext: (data: any)
             <p className="text-gray-500 text-sm mb-4">PDF, JPG, PNG, WEBP (Max 10MB)</p>
           </div>
         ) : (
-          <div className="border border-gray-200 rounded-2xl p-6 flex items-center justify-between bg-white">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-gray-100">
-                <File className="w-6 h-6 text-primary-600" />
+          <div className="space-y-6">
+            <div className="border border-gray-200 rounded-2xl p-6 flex items-center justify-between bg-white">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-gray-100">
+                  <File className="w-6 h-6 text-primary-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900 truncate max-w-[200px] sm:max-w-xs">{file.name}</p>
+                  <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-medium text-gray-900 truncate max-w-[200px] sm:max-w-xs">{file.name}</p>
-                <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-              </div>
+              <button 
+                onClick={() => setFile(null)}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
             </div>
-            <button 
-              onClick={() => setFile(null)}
-              className="p-2 hover:bg-gray-200 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5 text-gray-500" />
-            </button>
+            
+            <div className="animate-in fade-in duration-300">
+              <label className="block text-sm font-medium text-gray-900 mb-3">School Name <span className="text-red-500">*</span></label>
+              <input 
+                type="text" 
+                value={schoolName}
+                onChange={(e) => setSchoolName(e.target.value)}
+                placeholder="Enter School Name"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-600 outline-none focus:ring-1 focus:ring-primary-600 transition-colors"
+              />
+            </div>
           </div>
         )}
 
         <div className="pt-6 border-t border-gray-100 flex justify-end">
           <button
-            onClick={() => onNext({ file })}
-            disabled={!file}
+            onClick={() => onNext({ file, schoolName })}
+            disabled={!file || schoolName.trim().length === 0}
             className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
-              file 
+              file && schoolName.trim().length > 0
                 ? 'bg-primary-600 text-white hover:bg-primary-700' 
                 : 'bg-white text-gray-400 cursor-not-allowed'
             }`}

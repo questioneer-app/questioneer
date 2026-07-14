@@ -12,6 +12,7 @@ const DUMMY_CHAPTERS: Record<string, string[]> = {
 export default function ChapterSelection({ onNext, onBack }: { onNext: (data: any) => void, onBack: () => void }) {
   const [selectedClass, setSelectedClass] = useState<string>("");
   const [selectedSubject, setSelectedSubject] = useState<string>("");
+  const [schoolName, setSchoolName] = useState<string>("");
   const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
 
   const chapters = selectedSubject 
@@ -34,7 +35,7 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
     }
   };
 
-  const isFormValid = selectedClass && selectedSubject && selectedChapters.length > 0;
+  const isFormValid = selectedClass && selectedSubject && schoolName.trim().length > 0 && selectedChapters.length > 0;
 
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -91,8 +92,22 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
           </div>
         )}
 
-        {/* Chapter Selection */}
+        {/* School Name Selection */}
         {selectedSubject && (
+          <div className="animate-in fade-in duration-300">
+            <label className="block text-sm font-medium text-gray-900 mb-3">School Name <span className="text-red-500">*</span></label>
+            <input 
+              type="text" 
+              value={schoolName}
+              onChange={(e) => setSchoolName(e.target.value)}
+              placeholder="Enter School Name"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-600 outline-none focus:ring-1 focus:ring-primary-600 transition-colors"
+            />
+          </div>
+        )}
+
+        {/* Chapter Selection */}
+        {schoolName.trim().length > 0 && selectedSubject && (
           <div className="animate-in fade-in duration-300">
             <div className="flex items-center justify-between mb-3">
               <label className="block text-sm font-medium text-gray-900">Chapters</label>
@@ -128,7 +143,7 @@ export default function ChapterSelection({ onNext, onBack }: { onNext: (data: an
 
         <div className="pt-6 border-t border-gray-100 flex justify-end">
           <button
-            onClick={() => onNext({ className: selectedClass, subject: selectedSubject, chapters: selectedChapters })}
+            onClick={() => onNext({ className: selectedClass, subject: selectedSubject, schoolName, chapters: selectedChapters })}
             disabled={!isFormValid}
             className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
               isFormValid 

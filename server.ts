@@ -25,18 +25,41 @@ async function startServer() {
       const { type, content, options } = req.body;
       
       const parsedOptions = typeof options === 'string' ? JSON.parse(options) : options;
-      const { difficulty, questionTypes, marks, numQuestions, topicMode, selectedTopics } = parsedOptions || {};
+      const { schoolName, difficulty, questionTypes, marks, numQuestions, topicMode, selectedTopics } = parsedOptions || {};
 
       let parts = [];
-      let systemPrompt = `You are an expert educational content creator and question paper generator. Your task is to generate high-quality question papers strictly based on the provided material or syllabus chapters. Follow the instructions to create exactly the types of questions requested with appropriate difficulty. Output the question paper clearly with titles, sections, and proper numbering. Output valid Markdown.`;
+      let systemPrompt = `You are an expert educational content creator and question paper generator. Your task is to generate high-quality question papers strictly based on the provided material or syllabus chapters. Follow the instructions to create exactly the types of questions requested with appropriate difficulty. Output the question paper clearly with titles, sections, and proper numbering. Output valid Markdown.
+
+IMPORTANT FORMATTING RULE:
+The question paper MUST start exactly with the following header format (replace blanks with actual values):
+
+---------------------------------------
+<School Name>
+
+Question Paper
+
+Class: ____
+
+Subject: ____
+
+Time: ______
+
+Maximum Marks: ______
+---------------------------------------
+
+Do not add any other text before this header.`;
       
       let prompt = `Create a question paper based on the following requirements:\n`;
+      if (schoolName) prompt += `- School Name: ${schoolName}\n`;
       if (difficulty) prompt += `- Difficulty: ${difficulty}\n`;
       if (questionTypes && questionTypes.length > 0) prompt += `- Question Types: ${questionTypes.join(', ')}\n`;
       if (marks) prompt += `- Total Marks: ${marks}\n`;
       if (numQuestions) prompt += `- Number of Questions: ${numQuestions}\n`;
 
-      if (req.file) {
+      if (req.file || topicMode === 'detect' || topicMode === 'generate') {
+        if (!req.file) {
+          return res.status(400).json({ error: "File upload is required for this method" });
+        }
         if (topicMode === 'detect') {
           prompt = `Analyze the attached file and detect the main topics covered. Respond with a JSON array of strings containing the topic names. Output only the JSON. Example: ["Photosynthesis", "Respiration"]`;
         } else if (topicMode === 'generate') {
@@ -53,10 +76,13 @@ async function startServer() {
           }
         });
       } else {
+        if (!content) {
+           return res.status(400).json({ error: "Content (className, subject, chapters) is required" });
+        }
         const parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
-        prompt += `- Class: ${parsedContent.className}\n`;
-        prompt += `- Subject: ${parsedContent.subject}\n`;
-        prompt += `- Chapters: ${parsedContent.chapters.join(', ')}\n`;
+        prompt += `- Class: ${parsedContent?.className}\n`;
+        prompt += `- Subject: ${parsedContent?.subject}\n`;
+        prompt += `- Chapters: ${parsedContent?.chapters?.join(', ')}\n`;
         prompt += `\nBase the questions on NCERT syllabus for these chapters.\n`;
       }
 
@@ -76,6 +102,11 @@ async function startServer() {
       console.error("Gemini API Error:", error);
       res.status(500).json({ error: error.message || "An error occurred" });
     }
+  });
+
+  // Catch-all for API routes to prevent HTML fallbacks
+  app.use("/api", (req, res) => {
+    res.status(404).json({ error: "API route not found" });
   });
 
   // Vite middleware for development
