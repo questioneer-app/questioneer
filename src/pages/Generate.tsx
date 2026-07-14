@@ -7,6 +7,8 @@ import { BookOpen, FileUp } from "lucide-react";
 import { auth, db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 
+import GenerationLoader from "../components/generate/GenerationLoader";
+
 export type GenerationMethod = "chapters" | "upload" | null;
 
 export default function Generate() {
@@ -141,13 +143,7 @@ export default function Generate() {
         />
       )}
 
-      {step === 4 && (
-        <div className="flex flex-col items-center justify-center py-24 space-y-6">
-          <div className="w-12 h-12 border-4 border-primary-100 border-t-primary-600 rounded-full animate-spin"></div>
-          <h3 className="text-xl font-medium text-gray-900">Crafting your question paper...</h3>
-          <p className="text-gray-500 text-sm text-center max-w-md">Our AI is analyzing the material and structuring the questions based on your requirements.</p>
-        </div>
-      )}
+      {step === 4 && <GenerationLoader />}
 
       {step === 5 && generatedMarkdown && (
         <PaperPreview markdown={generatedMarkdown} onReset={() => setStep(1)} />

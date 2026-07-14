@@ -63,7 +63,7 @@ async function startServer() {
       parts.push({ text: prompt });
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-pro",
+        model: "gemini-flash-lite-latest",
         contents: parts,
         config: {
           systemInstruction: systemPrompt,
