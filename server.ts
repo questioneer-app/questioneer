@@ -93,6 +93,12 @@ async function startServer() {
     });
   }
 
+  // Global error handler
+  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error("Global Error Handler:", err);
+    res.status(500).json({ error: err.message || "Internal Server Error" });
+  });
+
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });

@@ -55,8 +55,19 @@ export default function Generate() {
         body: formData,
       });
       
-      if (!res.ok) throw new Error("Generation failed");
-      const { result } = await res.json();
+      let resultText = await res.text();
+      if (!res.ok) {
+        throw new Error(`Generation failed: ${res.status} ${resultText}`);
+      }
+      
+      let result;
+      try {
+        const parsed = JSON.parse(resultText);
+        result = parsed.result;
+      } catch (e) {
+        throw new Error(`Failed to parse response: ${resultText.substring(0, 100)}...`);
+      }
+      
       setGeneratedMarkdown(result);
       setStep(5); // Result state
 
