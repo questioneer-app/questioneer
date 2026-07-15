@@ -60,7 +60,8 @@ export default function Generate() {
         }));
       }
 
-      const res = await fetch('/api/generate', {
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${apiUrl}/api/generate`, {
         method: 'POST',
         body: formData,
       });
