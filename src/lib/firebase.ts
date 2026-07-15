@@ -1,17 +1,37 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import config from "../../firebase-applet-config.json";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import { getAuth, Auth } from "firebase/auth";
+import { getFirestore, Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || config.projectId || "gen-lang-client-0821366857",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || config.appId || "1:586856583123:web:1f2b9d5528dd58f23fe926",
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || config.apiKey || "AIzaSyCWuhRKsCFrZXygiwfVe-Wsh8R7d5wKGjY",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || config.authDomain || "gen-lang-client-0821366857.firebaseapp.com",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || config.storageBucket || "gen-lang-client-0821366857.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || config.messagingSenderId || "586856583123",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app, "ai-studio-a2abecc4-4b29-4629-bbe9-a3e0e68a7a56");
+let app: FirebaseApp | undefined;
+let authObj: any;
+let dbObj: any;
+
+if (firebaseConfig.apiKey) {
+  app = initializeApp(firebaseConfig);
+  authObj = getAuth(app);
+  dbObj = getFirestore(app, "ai-studio-a2abecc4-4b29-4629-bbe9-a3e0e68a7a56");
+} else {
+  console.warn("Firebase is not configured. Authentication and database features will be disabled.");
+  authObj = {
+    onAuthStateChanged: (cb: any) => {
+      cb(null);
+      return () => {};
+    },
+    currentUser: null,
+    signOut: async () => {},
+  };
+  dbObj = {} as any;
+}
+
+export const auth = authObj as Auth;
+export const db = dbObj as Firestore;
