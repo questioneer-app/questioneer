@@ -18,6 +18,7 @@ let dbObj: any;
 
 if (firebaseConfig.apiKey) {
   app = initializeApp(firebaseConfig);
+  // REMINDER: Ensure the production domain is added to the Authorized Domains list in the Firebase console for Firebase Auth to work correctly.
   authObj = getAuth(app);
   dbObj = getFirestore(app, "ai-studio-a2abecc4-4b29-4629-bbe9-a3e0e68a7a56");
 } else {

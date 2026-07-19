@@ -94,16 +94,21 @@ export default function Generate() {
 
       // Save to Firebase if user is logged in
       if (auth.currentUser) {
-        await addDoc(collection(db, "papers"), {
-          userId: auth.currentUser.uid,
-          method: finalData.method,
-          subject: finalData.subject || null,
-          className: finalData.className || null,
-          marks: finalData.marks,
-          numQuestions: finalData.numQuestions,
-          markdown: result,
-          createdAt: new Date().toISOString()
-        });
+        try {
+          await addDoc(collection(db, "papers"), {
+            userId: auth.currentUser.uid,
+            method: finalData.method,
+            subject: finalData.subject || null,
+            className: finalData.className || null,
+            marks: finalData.marks,
+            numQuestions: finalData.numQuestions,
+            markdown: result,
+            createdAt: new Date().toISOString()
+          });
+        } catch (dbError) {
+          console.error("Failed to save paper to history:", dbError);
+          // UI does not crash, user can still see the generated paper.
+        }
       }
 
     } catch (err) {
